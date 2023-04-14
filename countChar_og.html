@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+
+    <!--리액트 사용 준비-->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link rel="stylesheet" href="countChar.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      //애플리케이션 클래스 생성하기
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            charCount: 0,
+          };
+        }
+
+        //화면에 나오게 될 textarea 태그와 label 태그입니다.
+        render() {
+          return (
+            <div className="textCount">
+              <label for="context">글자수: {this.state.charCount}</label>
+              <br />
+              <textarea
+                name="context"
+                value={this.state.inputValue}
+                onChange={this.handleChange}
+                placeholder="내용을 입력해주세요"
+                rows="40"
+                cols="120"
+              ></textarea>
+            </div>
+          );
+        }
+
+        /*
+        # textarea 안에 작성되는 글의 길이에 따라 문자를 헤아려주는 기능입니다.
+        */
+        handleChange = (event) => {
+          const value = event.target.value;
+          setTimeout(() => {
+            this.setState({
+              charCount: value.length,
+            });
+          }, 50);
+        };
+      }
+
+      //출력하기
+      const container = document.getElementById("root");
+      ReactDOM.render(<App />, container);
+    </script>
+  </body>
+</html>
