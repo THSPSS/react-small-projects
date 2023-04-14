@@ -47,12 +47,14 @@
         */
         handleChange = (event) => {
           const value = event.target.value;
-          setTimeout(() => {
-            this.setState({
-              inputValue: value,
-              charCount: value.length,
-            });
-          }, 50);
+          this.setState({
+            inputValue: value,
+            charCount: this.countCharacters(value),
+          });
+        };
+
+        countCharacters = (value) => {
+          return value.lenght;
         };
       }
 
